@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compitable" content="IE-edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<title>Plagiarisim Checker</title>
+
+<style media="screen">
+    .file-submission{
+
+        display: inline-flex;
+        align-items: center;
+        font-size: 15px;
+    }
+
+    .file-upload__input{
+
+        display: none;
+    }
+
+    .file-upload__button{
+        -webkit-appearance: none;
+        background: rgb(78, 78, 240);
+        border: 2px solid darkblue;
+        border-radius: 4px;
+        outline: none;
+        padding: 0.5em 0.8em;
+        margin-right: 15px;
+        color:white;
+        font: size 1em;
+        font-family: sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .file-upload__button:active{
+        background: darkblue;
+    }
+
+    .file-upload__text{
+        max-width: 200px;
+        font-size: 0.95em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .divider{
+        height: 40px;
+    }
+
+    .drop-zone--over{
+    opacity: 0.5;
+}
+ </style>
+</head>
+<body> 
+    
+<header>
+   <h1 class="headerTitle">Plagiarism Checker</h1> 
+</header>
+
+
+<div class="following">
+<h1 class="following-title" style="color:white"> Check Code For Plagiarism</h1>
+<p class="following-sub" style="color: white;"> Ensuring there is no Plagiarism between code in javascript files</p>
+</div>
+
+<main>
+<h1>Submit Files</h1>
+<div class="file-submission">
+    
+    <input class="file-upload__input" accept=".js" type="file" name="Files[]" id="Files" multiple>
+    <button class="file-upload__button" type="button">Choose File(s)</button>
+    <span class="file-upload__text"></span>
+</div>
+    <div class="divider">
+    </div>
+
+<div class="drop-zone" style="border-color: mediumaquamarine;" > 
+    <div id="myDragElem" draggable="true"></div>
+
+</div>
+<div class="drop-zone" style="border-color: royalblue;"></div>
+
+<input type="file" multiple id="fileDrag" style="display: none;" accept=".js">
+       
+    
+
+    
+
+    
+</main>
+
+<aside> 
+<h1>Code Similarity Report</h1>
+
+
+<table>
+    <h4>File 1 name:</h4>
+<tr>
+    <td>File:</td>
+    <td>Similarity:</td>
+    <td>Size:</td>
+</tr>
+
+</table>
+
+</aside>
+
+<script>
+
+
+     //option to drag multiple files through drag and drop
+    const draggable = document.querySelector("#myDragElem");
+
+    draggable.addEventListener("dragstart", e =>{
+       e.dataTransfer.setData("text/plain", draggable.id)
+    }) 
+
+    for (const dropZone of document.querySelectorAll(".drop-zone")) {
+        dropZone.addEventListener("dragover", e => {
+            e.preventDefault();
+            dropZone.classList.add("drop-zone--over")
+        });
+
+        //when draggable elemnt no longer over drop zone
+        dropZone.addEventListener("dragleave", e => {
+            dropZone.classList.remove("drop-zone--over")
+        })
+
+        //when draggable event is dropped on drop zone
+        dropZone.addEventListener("drop", e=> {
+            e.preventDefault();
+
+            document.getElementById("fileDrag").files = e.dataTransfer.files 
+            console.log(e.dataTransfer.files)
+
+            const droppedID = e.dataTransfer.getData("text/plain")
+            const droppedElement = document.getElementById(droppedID)
+            dropZone.appendChild(droppedElement)
+            dropZone.classList.remove("drop-zone--over")
+        })
+    }
+
+
+    //option to choose multiple files through the button
+    Array.prototype.forEach.call(document.querySelectorAll('.file-upload__button'), function(button){
+       const file = button.parentElement.querySelector('.file-upload__input');
+       const fileText = button.parentElement.querySelector('.file-upload__text');
+       const standardText = "No files selected";
+       
+    
+       fileText.textContent = standardText
+       fileText.title = standardText
+
+       button.addEventListener('click', function (){
+           file.click();
+       })
+
+       file.addEventListener('change', function(){
+
+        const fileList = Array.prototype.map.call(file.files, function (file){
+            return file.name;
+        } )
+
+        fileText.textContent = fileList.join(", ") || fileText
+        fileText.title = fileText.textContent
+       })
+    })
+    
+    </script>
+</body>
+</html>

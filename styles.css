@@ -1,0 +1,82 @@
+body{
+    @import url('https://fonts.googleapis.com/css2?family=Headland+One&display=swap');
+    
+    @include font-base;
+    line-height: 1.6;
+
+    display: grid;
+    grid-template-rows: 10em 50vh auto 10em;
+    grid-template-columns: 1fr 5fr 2fr 1fr;
+    grid-template-areas: "header header header header"
+    "following following following following"
+    ". main sidebar ."
+    "footer footer footer footer";
+}
+
+header{
+    grid-area: header;
+}
+
+header,
+footer{
+    background: blue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Merriweather;
+}
+
+.header-title
+.footer-title {
+    
+    font-family:Merriweather ;
+    background: blue;
+}
+
+.following{
+    grid-area: following;
+    background: url(https://cdn.wallpapersafari.com/31/2/AvbLiU.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    margin: 0;
+}
+
+main{
+    grid-area:main;
+}
+
+aside{
+    grid-area: sidebar;
+    background-color: rgb(238, 235, 235);
+    
+}
+
+footer{
+    grid-area:footer;
+}
+
+.drop-zone{
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 8px dashed mediumspringgreen
+}
+
+
+
+#myDragElem{
+    width: 50px;
+    height:50px;
+    background: black;
+}
+
+
+
