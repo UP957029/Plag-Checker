@@ -53,7 +53,34 @@
 
     .drop-zone--over{
     opacity: 0.5;
-}
+    }
+
+    .drop-zone__image{
+       width: 100%;
+       height: 100%;
+       border-radius: 10px;
+       overflow: hidden;
+       background-color: gainsboro;
+       background-size: cover;
+       position: relative;
+    } 
+
+    .drop-zone__image::after{
+        content: attr(data-text);
+        position:absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 5px 0;
+        color: ghostwhite;
+        background: black;
+        font-size: 14px;
+        text-align: center;
+
+        
+
+    }
+
  </style>
 </head>
 <body> 
@@ -79,18 +106,13 @@
     <div class="divider">
     </div>
 
-<div class="drop-zone" style="border-color: mediumaquamarine;" > 
-    <div id="myDragElem" draggable="true"></div>
+<div class="drop-zone" style="border-color: blue;" > 
+
+    
+    <span class="drop-zone__text"> Drop files to upload</span>
+    <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]" accept=".js">
 
 </div>
-<div class="drop-zone" style="border-color: royalblue;"></div>
-
-<input type="file" multiple id="fileDrag" style="display: none;" accept=".js">
-       
-    
-
-    
-
     
 </main>
 
@@ -113,37 +135,57 @@
 <script>
 
 
+
+
      //option to drag multiple files through drag and drop
-    const draggable = document.querySelector("#myDragElem");
 
-    draggable.addEventListener("dragstart", e =>{
-       e.dataTransfer.setData("text/plain", draggable.id)
-    }) 
+     // gets nearest elemnt with hte class "drop-zone"
+     document.querySelectorAll(".drop-zone__file").forEach((inputElement) => {
+  const dropZoneElement = inputElement.closest(".drop-zone");
 
-    for (const dropZone of document.querySelectorAll(".drop-zone")) {
-        dropZone.addEventListener("dragover", e => {
-            e.preventDefault();
-            dropZone.classList.add("drop-zone--over")
-        });
+  dropZoneElement.addEventListener("click", (e) => {
+    inputElement.click();
+  });
 
-        //when draggable elemnt no longer over drop zone
-        dropZone.addEventListener("dragleave", e => {
-            dropZone.classList.remove("drop-zone--over")
-        })
-
-        //when draggable event is dropped on drop zone
-        dropZone.addEventListener("drop", e=> {
-            e.preventDefault();
-
-            document.getElementById("fileDrag").files = e.dataTransfer.files 
-            console.log(e.dataTransfer.files)
-
-            const droppedID = e.dataTransfer.getData("text/plain")
-            const droppedElement = document.getElementById(droppedID)
-            dropZone.appendChild(droppedElement)
-            dropZone.classList.remove("drop-zone--over")
-        })
+  inputElement.addEventListener("change", (e) => {
+    if (inputElement.files.length) {
+      updateThumbnail(dropZoneElement, inputElement.files[0]);
     }
+  });
+
+  dropZoneElement.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement.classList.add("drop-zone--over");
+  });
+
+  ["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement.addEventListener(type, (e) => {
+      dropZoneElement.classList.remove("drop-zone--over");
+    });
+  });
+
+  dropZoneElement.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+      inputElement.files = e.dataTransfer.files;
+      console.log(e.dataTransfer.files)
+    }
+
+    dropZoneElement.classList.remove("drop-zone--over");
+  });
+});
+
+
+  
+ 
+
+ 
+
+
+
+
+    
 
 
     //option to choose multiple files through the button

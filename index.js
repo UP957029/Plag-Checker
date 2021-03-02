@@ -1,3 +1,7 @@
+const indexHTML = require("./index.html")
+
+index.use(indexHTML);
+
 document.querySelectorAll(".drop-input").forEach(inputElement =>{
     const dropZoneElement = inputElement.closest(".drop-zone");
 
