@@ -109,16 +109,17 @@
 <div class="drop-zone" style="border-color: blue;" > 
 
     
-    <span class="drop-zone__text"> Drop files to upload</span>
-    <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]" accept=".js">
+    <span> Drop file(s) to upload</span>
+    <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]">
 
 </div>
-    
+ 
+<button id="Submit" style="background-color: blue;" style="color: white;" style="position: relative;"></button>
 </main>
+
 
 <aside> 
 <h1>Code Similarity Report</h1>
-
 
 <table>
     <h4>File 1 name:</h4>
@@ -139,9 +140,11 @@
 
      //option to drag multiple files through drag and drop
 
-     // gets nearest elemnt with hte class "drop-zone"
-     document.querySelectorAll(".drop-zone__file").forEach((inputElement) => {
-  const dropZoneElement = inputElement.closest(".drop-zone");
+     const droppable = document.querySelector(".drop-upload__text")
+     
+     
+  document.querySelectorAll(".drop-zone__file").forEach((inputElement) => {
+   const dropZoneElement = inputElement.closest(".drop-zone");
 
   dropZoneElement.addEventListener("click", (e) => {
     inputElement.click();
@@ -173,19 +176,14 @@
     }
 
     dropZoneElement.classList.remove("drop-zone--over");
+
+    droppable.textContent = droppable.files
+      
+
+
   });
 });
 
-
-  
- 
-
- 
-
-
-
-
-    
 
 
     //option to choose multiple files through the button

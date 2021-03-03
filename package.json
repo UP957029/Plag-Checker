@@ -1,0 +1,20 @@
+{
+  "name": "plag-checker",
+  "version": "1.0.0",
+  "description": "Plagiarism Checker checks files for plagiarism between code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UP957029/Plag-Checker.git"
+  },
+  "author": "Ben Reeves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UP957029/Plag-Checker/issues"
+  },
+  "homepage": "https://github.com/UP957029/Plag-Checker#readme"
+}
