@@ -15,23 +15,27 @@ body{
 
 header{
     grid-area: header;
+    
 }
+
 
 header,
 footer{
-    background: blue;
-    color: white;
+    background-color: #4267B2;
+    color : white;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Merriweather;
+    font-family: sans-serif;
 }
 
 .header-title
+    
+
 .footer-title {
     
     font-family:Merriweather ;
-    background: blue;
+    background: #4267B2;
 }
 
 .following{
@@ -51,7 +55,7 @@ main{
 
 aside{
     grid-area: sidebar;
-    background-color: rgb(238, 235, 235);
+    background-color: #f7f7f7;
     
 }
 
@@ -60,7 +64,7 @@ footer{
 }
 
 .drop-zone{
-    width: 200px;
+    width: 300px;
     height: 200px;
     float: left;
     margin-right: 10px;
@@ -70,13 +74,56 @@ footer{
     border: 8px dashed mediumspringgreen
 }
 
-
-
-#myDragElem{
-    width: 50px;
-    height:50px;
-    background: black;
+.drop-zone{
+    border: 2px dashed  #3b5998;
+    height: 500px;
+    width: 700px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
+
+.drop-zone header {
+    background-color:#dfe3ee ;
+    font-size: 30px;
+    font-weight: 500;
+    color:  #3b5998;
+}
+.drop-zone span{
+    font-size:  25px;
+    font-weight: 500;
+    color:  #3b5998;
+    font-family: sans-serif;
+    margin: 10px 0 15px 0;
+}
+
+.drop-zone pic{
+    font-size: 100px;
+
+}
+
+.drop-zone__button{
+    -webkit-appearance: none;
+    background:  #3b5998;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    padding: 10px 25px;
+    margin-right: 15px;
+    color:white;
+    font: size 1em;
+    font-family: sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.drop-zone--over{
+    border: 2px solid #3b5998;
+    }
+
 
 
 

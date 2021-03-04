@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 <title>Plagiarisim Checker</title>
 
+
 <style media="screen">
     .file-submission{
 
@@ -20,20 +21,7 @@
         display: none;
     }
 
-    .file-upload__button{
-        -webkit-appearance: none;
-        background: rgb(78, 78, 240);
-        border: 2px solid darkblue;
-        border-radius: 4px;
-        outline: none;
-        padding: 0.5em 0.8em;
-        margin-right: 15px;
-        color:white;
-        font: size 1em;
-        font-family: sans-serif;
-        font-weight: bold;
-        cursor: pointer;
-    }
+    
 
     .file-upload__button:active{
         background: darkblue;
@@ -51,9 +39,7 @@
         height: 40px;
     }
 
-    .drop-zone--over{
-    opacity: 0.5;
-    }
+    
 
     .drop-zone__image{
        width: 100%;
@@ -77,16 +63,18 @@
         font-size: 14px;
         text-align: center;
 
-        
-
+    
     }
+
+    
 
  </style>
 </head>
-<body> 
+<body style="background-color: #dfe3ee;"> 
     
 <header>
    <h1 class="headerTitle">Plagiarism Checker</h1> 
+   
 </header>
 
 
@@ -95,26 +83,20 @@
 <p class="following-sub" style="color: white;"> Ensuring there is no Plagiarism between code in javascript files</p>
 </div>
 
+
 <main>
-<h1>Submit Files</h1>
-<div class="file-submission">
-    
-    <input class="file-upload__input" accept=".js" type="file" name="Files[]" id="Files" multiple>
-    <button class="file-upload__button" type="button">Choose File(s)</button>
-    <span class="file-upload__text"></span>
-</div>
-    <div class="divider">
-    </div>
+  <div class="divider">
 
-<div class="drop-zone" style="border-color: blue;" > 
+  </div>
 
-    
-    <span> Drop file(s) to upload</span>
-    <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]">
+<div class="drop-zone">
+  <div class="pic"> <i class="fas fa-cloud-upload-alt"></i> </div>
+ <header id="dropText">Drag and drop file(s) here</header>
+ <span>Or</span>
+ <button class="drop-zone__button">Select file(s)</button>
+ <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]">
 
 </div>
- 
-<button id="Submit" style="background-color: blue;" style="color: white;" style="position: relative;"></button>
 </main>
 
 
@@ -137,80 +119,66 @@
 
 
 
-
-     //option to drag multiple files through drag and drop
-
-     const droppable = document.querySelector(".drop-upload__text")
-     
-     
-  document.querySelectorAll(".drop-zone__file").forEach((inputElement) => {
-   const dropZoneElement = inputElement.closest(".drop-zone");
-
-  dropZoneElement.addEventListener("click", (e) => {
-    inputElement.click();
-  });
-
-  inputElement.addEventListener("change", (e) => {
-    if (inputElement.files.length) {
-      updateThumbnail(dropZoneElement, inputElement.files[0]);
-    }
-  });
-
-  dropZoneElement.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    dropZoneElement.classList.add("drop-zone--over");
-  });
-
-  ["dragleave", "dragend"].forEach((type) => {
-    dropZoneElement.addEventListener(type, (e) => {
-      dropZoneElement.classList.remove("drop-zone--over");
-    });
-  });
-
-  dropZoneElement.addEventListener("drop", (e) => {
-    e.preventDefault();
-
-    if (e.dataTransfer.files.length) {
-      inputElement.files = e.dataTransfer.files;
-      console.log(e.dataTransfer.files)
-    }
-
-    dropZoneElement.classList.remove("drop-zone--over");
-
-    droppable.textContent = droppable.files
-      
+const dropZone = document.querySelector(".drop-zone");
+const button = document.querySelector(".drop-zone__button")
+//global variable, will be used in a few functions 
+let file; 
+const dragText = document.querySelector('#dropText')
+const inputFile = document.querySelector('.drop-zone__file')
 
 
-  });
+dropZone.addEventListener("dragover", (e)=>{
+  e.preventDefault();
+    dropZone.classList.add("drop-zone--over");
+    dragText.textContent = "Release file to uplaod"
+})
+
+dropZone.addEventListener("dragleave", (e)=>{
+  e.preventDefault();
+  dropZone.classList.remove("drop-zone--over")
+  dragText.textContent = "Drag and drop file(s) here"
+})
+
+dropZone.addEventListener("drop", (event) => {
+  event.preventDefault();
+  
+  file = event.dataTransfer.files
+  let readers = []
+  showFiles()
+  
+
 });
 
+button.addEventListener("click", ()=>{
+  inputFile.click()
+})
+
+inputFile.addEventListener("change", function(){
+  file = this.files
+  showFiles();
+  
+})
 
 
-    //option to choose multiple files through the button
-    Array.prototype.forEach.call(document.querySelectorAll('.file-upload__button'), function(button){
-       const file = button.parentElement.querySelector('.file-upload__input');
-       const fileText = button.parentElement.querySelector('.file-upload__text');
-       const standardText = "No files selected";
-       
-    
-       fileText.textContent = standardText
-       fileText.title = standardText
-
-       button.addEventListener('click', function (){
-           file.click();
-       })
-
-       file.addEventListener('change', function(){
-
-        const fileList = Array.prototype.map.call(file.files, function (file){
-            return file.name;
-        } )
-
-        fileText.textContent = fileList.join(", ") || fileText
-        fileText.title = fileText.textContent
-       })
-    })
-    
+// This function will display the files text content
+function showFiles(){
+  for(let i =0; i<file.length; i++){
+  let fileType = file[i].type
+  let validExtensions = ["text/javascript"]; 
+  if(validExtensions.includes(fileType)){
+    let fileReader = new FileReader();
+    fileReader.onload = () =>{
+      let fileURL = fileReader.result;
+      console.log(fileURL)
+    }
+    fileReader.readAsDataURL(file[i])
+  }else{
+    alert("Invalid File")
+    dropZone.classList.remove("drop-zone--over")
+  }
+}
+}
+     
     </script>
 </body>
 </html>
