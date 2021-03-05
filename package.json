@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/UP957029/Plag-Checker/issues"
   },
-  "homepage": "https://github.com/UP957029/Plag-Checker#readme"
+  "homepage": "https://github.com/UP957029/Plag-Checker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

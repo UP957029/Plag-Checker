@@ -99,8 +99,9 @@ footer{
     margin: 10px 0 15px 0;
 }
 
-.drop-zone pic{
+.drop-zone .pic{
     font-size: 100px;
+    color: #3b5998;
 
 }
 
@@ -118,11 +119,33 @@ footer{
     font-weight: 500;
     cursor: pointer;
     font-size: 20px;
+    
 }
 
 .drop-zone--over{
     border: 2px solid #3b5998;
     }
+
+.drop-zone__submit{
+    background: #3b5998;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-right: 15px;
+    font: size 1em;
+    font-family: sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 25px;
+    font-size: 20px;
+    -webkit-appearance: none;
+    margin: 20px 0 15px 0;
+    
+    
+
+    
+
+}
 
 
 

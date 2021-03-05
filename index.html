@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compitable" content="IE-edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 <title>Plagiarisim Checker</title>
 
 
@@ -69,7 +70,7 @@
     
 
  </style>
-</head>
+</head  >
 <body style="background-color: #dfe3ee;"> 
     
 <header>
@@ -88,15 +89,20 @@
   <div class="divider">
 
   </div>
+<form class="submitForm" id="submitForm">
 
-<div class="drop-zone">
-  <div class="pic"> <i class="fas fa-cloud-upload-alt"></i> </div>
- <header id="dropText">Drag and drop file(s) here</header>
- <span>Or</span>
- <button class="drop-zone__button">Select file(s)</button>
- <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]">
+  <div class="drop-zone">
+    <div class="pic"> <i class="fas fa-file-upload"></i> </div>
+   <header id="dropText">Drag and drop file(s) here</header>
+   <span>Or</span>
+   <button class="drop-zone__button">Select file(s)</button>
+   <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]">
+   <button class="drop-zone__submit">Upload</button>
+   </div>
 
-</div>
+</form>
+
+
 </main>
 
 
@@ -178,6 +184,19 @@ function showFiles(){
   }
 }
 }
+
+  //submits the uplaoded files to the server "server.js"
+  const form = document.getElementById("submitForm");
+
+  form.addEventListener("submit", e=>{
+    e.preventDefault();
+
+    const endpoint = "upload.js";
+    const formdData = new FormData();
+    formdData.append("file", file.files)
+    console.log(file)
+
+  });
      
     </script>
 </body>
