@@ -140,10 +140,62 @@ footer{
     font-size: 20px;
     -webkit-appearance: none;
     margin: 20px 0 15px 0;
-    
-    
+}
 
-    
+.file-submission{
+
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.file-upload__input{
+
+    display: none;
+}
+
+
+
+.file-upload__button:active{
+    background: darkblue;
+}
+
+.file-upload__text{
+    max-width: 200px;
+    font-size: 0.95em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.divider{
+    height: 40px;
+}
+
+
+
+.drop-zone__image{
+   width: 100%;
+   height: 100%;
+   border-radius: 10px;
+   overflow: hidden;
+   background-color: gainsboro;
+   background-size: cover;
+   position: relative;
+} 
+
+.drop-zone__image::after{
+    content: attr(data-text);
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: ghostwhite;
+    background: black;
+    font-size: 14px;
+    text-align: center;
+
 
 }
 

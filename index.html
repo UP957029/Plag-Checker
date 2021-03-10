@@ -7,197 +7,41 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 <title>Plagiarisim Checker</title>
-
-
-<style media="screen">
-    .file-submission{
-
-        display: inline-flex;
-        align-items: center;
-        font-size: 15px;
-    }
-
-    .file-upload__input{
-
-        display: none;
-    }
-
-    
-
-    .file-upload__button:active{
-        background: darkblue;
-    }
-
-    .file-upload__text{
-        max-width: 200px;
-        font-size: 0.95em;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    .divider{
-        height: 40px;
-    }
-
-    
-
-    .drop-zone__image{
-       width: 100%;
-       height: 100%;
-       border-radius: 10px;
-       overflow: hidden;
-       background-color: gainsboro;
-       background-size: cover;
-       position: relative;
-    } 
-
-    .drop-zone__image::after{
-        content: attr(data-text);
-        position:absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 5px 0;
-        color: ghostwhite;
-        background: black;
-        font-size: 14px;
-        text-align: center;
-
-    
-    }
-
-    
-
- </style>
+<style media="screen"></style>
 </head  >
 <body style="background-color: #dfe3ee;"> 
-    
 <header>
    <h1 class="headerTitle">Plagiarism Checker</h1> 
-   
 </header>
-
-
 <div class="following">
-<h1 class="following-title" style="color:white"> Check Code For Plagiarism</h1>
-<p class="following-sub" style="color: white;"> Ensuring there is no Plagiarism between code in javascript files</p>
+  <h1 class="following-title" style="color:white"> Check Code For Plagiarism</h1>
+  <p class="following-sub" style="color: white;"> Ensuring there is no Plagiarism between code in javascript files</p>
 </div>
-
-
 <main>
   <div class="divider">
-
   </div>
 <form class="submitForm" id="submitForm">
-
   <div class="drop-zone">
     <div class="pic"> <i class="fas fa-file-upload"></i> </div>
-   <header id="dropText">Drag and drop file(s) here</header>
-   <span>Or</span>
-   <button class="drop-zone__button">Select file(s)</button>
-   <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]">
-   <button class="drop-zone__submit">Upload</button>
-   </div>
-
+    <header id="dropText">Drag and drop file(s) here</header>
+    <span>Or</span>
+    <button class="drop-zone__button">Select file(s)</button>
+    <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]">
+    <button class="drop-zone__submit">Upload</button>
+  </div>
 </form>
-
-
 </main>
-
-
 <aside> 
 <h1>Code Similarity Report</h1>
-
 <table>
-    <h4>File 1 name:</h4>
-<tr>
+  <h4>File 1 name:</h4>
+  <tr>
     <td>File:</td>
     <td>Similarity:</td>
     <td>Size:</td>
 </tr>
-
 </table>
-
 </aside>
-
-<script>
-
-
-
-const dropZone = document.querySelector(".drop-zone");
-const button = document.querySelector(".drop-zone__button")
-//global variable, will be used in a few functions 
-let file; 
-const dragText = document.querySelector('#dropText')
-const inputFile = document.querySelector('.drop-zone__file')
-
-
-dropZone.addEventListener("dragover", (e)=>{
-  e.preventDefault();
-    dropZone.classList.add("drop-zone--over");
-    dragText.textContent = "Release file to uplaod"
-})
-
-dropZone.addEventListener("dragleave", (e)=>{
-  e.preventDefault();
-  dropZone.classList.remove("drop-zone--over")
-  dragText.textContent = "Drag and drop file(s) here"
-})
-
-dropZone.addEventListener("drop", (event) => {
-  event.preventDefault();
-  
-  file = event.dataTransfer.files
-  let readers = []
-  showFiles()
-  
-
-});
-
-button.addEventListener("click", ()=>{
-  inputFile.click()
-})
-
-inputFile.addEventListener("change", function(){
-  file = this.files
-  showFiles();
-  
-})
-
-
-// This function will display the files text content
-function showFiles(){
-  for(let i =0; i<file.length; i++){
-  let fileType = file[i].type
-  let validExtensions = ["text/javascript"]; 
-  if(validExtensions.includes(fileType)){
-    let fileReader = new FileReader();
-    fileReader.onload = () =>{
-      let fileURL = fileReader.result;
-      console.log(fileURL)
-    }
-    fileReader.readAsDataURL(file[i])
-  }else{
-    alert("Invalid File")
-    dropZone.classList.remove("drop-zone--over")
-  }
-}
-}
-
-  //submits the uplaoded files to the server "server.js"
-  const form = document.getElementById("submitForm");
-
-  form.addEventListener("submit", e=>{
-    e.preventDefault();
-
-    const endpoint = "upload.js";
-    const formdData = new FormData();
-    formdData.append("file", file.files)
-    console.log(file)
-
-  });
-     
-    </script>
+<script src="./app.js"> </script>
 </body>
 </html>
