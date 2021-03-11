@@ -63,7 +63,7 @@ function showFiles(){
 }
 
   //submits the uplaoded files to the server "server.js"
-  const form = document.getElementById("submitForm");
+  const form = document.querySelector(".submitForm");
 
   form.addEventListener("submit", e=>{
     e.preventDefault();
