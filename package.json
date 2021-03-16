@@ -21,5 +21,16 @@
     "express": "^4.17.1",
     "multer": "^1.4.2",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-portsoc": "^0.8.1"
+  },
+  "eslintConfig": {
+    "extends": "portsoc",
+    "root": true,
+    "env": {
+      "browser": true
+    }
   }
 }

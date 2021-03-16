@@ -21,7 +21,7 @@ header{
 
 header,
 footer{
-    background-color: #4267B2;
+    background-color: #2288ee;
     color : white;
     display: flex;
     justify-content: center;
@@ -35,7 +35,7 @@ footer{
 .footer-title {
     
     font-family:Merriweather ;
-    background: #4267B2;
+    background: 3b5998;
 }
 
 .following{
@@ -75,7 +75,7 @@ footer{
 }
 
 .drop-zone{
-    border: 2px dashed  #3b5998;
+    border: 2px dashed  #2288ee;
     height: 500px;
     width: 700px;
     border-radius: 2px;
@@ -89,25 +89,25 @@ footer{
     background-color:#dfe3ee ;
     font-size: 30px;
     font-weight: 500;
-    color:  #3b5998;
+    color:  #2288ee;
 }
 .drop-zone span{
     font-size:  25px;
     font-weight: 500;
-    color:  #3b5998;
+    color:  #2288ee;
     font-family: sans-serif;
     margin: 10px 0 15px 0;
 }
 
 .drop-zone .pic{
     font-size: 100px;
-    color: #3b5998;
+    color: #2288ee;
 
 }
 
 .drop-zone__button{
     -webkit-appearance: none;
-    background:  #3b5998;
+    background:  #2288ee;
     border: none;
     border-radius: 4px;
     outline: none;
@@ -123,11 +123,11 @@ footer{
 }
 
 .drop-zone--over{
-    border: 2px solid #3b5998;
+    border: 2px solid #2288ee;
     }
 
 .drop-zone__submit{
-    background: #3b5998;
+    background: #2288ee;
     color: white;
     border: none;
     border-radius: 4px;
