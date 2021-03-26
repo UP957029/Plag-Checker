@@ -70,3 +70,24 @@ form.addEventListener('submit', e => {
   console.log(file)
 });
 */
+
+// Functions for server
+const form = document.getElementById('form');
+
+form.addEventListener('submit', submitForm);
+
+function submitForm(e) {
+  e.preventDefault();
+
+  const files = document.getElementsByClassName('drop-zone__file');
+  const formData = new FormData();
+  for (let i = 0; i < files.files.length; i++) {
+    formData.append('files', files.files[i]);
+  }
+  fetch('http://localhost:5000/upload_files', {
+    method: 'post',
+    body: formData,
+  })
+    .then((res) => console.log(res))
+    .catch((err) => ('Error occured', err));
+}
