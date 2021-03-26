@@ -1,11 +1,23 @@
-const express = require('express');
 const multer = require('multer');
-const md5File = require('md5-file/promise');
+const upload = multer({ dest: 'uploads/' });
 
-const config = require('./config.json')
+const express = require('express');
 
 const app = express();
-const configuredMulter = multer(config)
-const multi = configuredMulter.multi('md5me')
+app.use(express.json());
 
+app.post('/upload_files', uploadFiles);
+function uploadFiles(req, res) {
+  console.log(req.body);
+}
+app.listen(8080, () => {
+  console.log('Server started...');
+});
 
+app.post('/upload_files', upload.array('files'), uploadToServer);
+
+function uploadToServer(req, res) {
+  console.log(req.body);
+  console.log(req.files);
+  res.json({ message: 'Successfully uploaded files' });
+}

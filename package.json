@@ -2,10 +2,10 @@
   "name": "plag-checker",
   "version": "1.0.0",
   "description": "Plagiarism Checker checks files for plagiarism between code",
-  "main": "index.js",
+  "main": "node app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "index.html"
+    "start": "node index.html"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@linthtml/linthtml": "^0.7.0",
     "eslint": "^7.22.0",
     "eslint-config-portsoc": "^0.8.1"
   },
