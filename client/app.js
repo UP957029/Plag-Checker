@@ -81,10 +81,10 @@ function submitForm(e) {
 
   const files = document.getElementsByClassName('drop-zone__file');
   const formData = new FormData();
-  for (let i = 0; i < files.files.length; i++) {
-    formData.append('files', files.files[i]);
+  for (let i = 0; i < files.length; i++) {
+    formData.append('files', files[i]);
   }
-  fetch('http://localhost:5000/upload_files', {
+  fetch('http://localhost:8080/upload_files', {
     method: 'post',
     body: formData,
   })

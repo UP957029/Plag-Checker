@@ -7,6 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/upload_files', uploadFiles);
+// eslint-disable-next-line no-unused-vars
 function uploadFiles(req, res) {
   console.log(req.body);
 }
