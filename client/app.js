@@ -1,3 +1,4 @@
+/* eslint-disable no-sequences */
 const dropZone = document.querySelector('.drop-zone');
 const button = document.querySelector('.drop-zone__button');
 // global variable, will be used in a few functions
@@ -89,5 +90,8 @@ function submitForm(e) {
     body: formData,
   })
     .then((res) => console.log(res))
+    // eslint-disable-next-line no-restricted-syntax
+    // eslint-disable-next-line no-sequences
+    // eslint-disable-next-line no-restricted-syntax
     .catch((err) => ('Error occured', err));
 }

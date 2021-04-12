@@ -1,24 +1,24 @@
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
-
 const express = require('express');
-
+const multer = require('multer');
+const path = require('path');
+const uuid = require('uuid').v4;
 const app = express();
-app.use(express.json());
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads');
+  },
+  filename: (req, file, cb) => {
+    const { originalname } = file;
+    // or
+    // uuid, or fieldname
+    cb(null, originalname);
+  },
+});
+const upload = multer({ storage }); // or simply { dest: 'uploads/' }
+app.use(express.static('client'));
 
-app.post('/upload_files', uploadFiles);
-// eslint-disable-next-line no-unused-vars
-function uploadFiles(req, res) {
-  console.log(req.body);
-}
-app.listen(8080, () => {
-  console.log('Server started...');
+app.post('/upload', upload.array('avatar'), (req, res) => {
+  return res.json({ status: 'OK', uploaded: req.files.length });
 });
 
-app.post('/upload_files', upload.array('files'), uploadToServer);
-
-function uploadToServer(req, res) {
-  console.log(req.body);
-  console.log(req.files);
-  res.json({ message: 'Successfully uploaded files' });
-}
+app.listen(5000);

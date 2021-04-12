@@ -14,17 +14,19 @@
    <h1 class="headerTitle">Plagiarism Checker</h1> 
 </header>
 <main>
-  <form id="form">
+  
     <div class="drop-zone">
       <div class="pic"> <i class="fas fa-file-upload"></i> </div>
       <header id="dropText">Drag and drop file(s) here</header>
       <span>Or</span>
+      
       <button class="drop-zone__button">Select file(s)</button>
+      <form action="/upload" method="post" enctype="multipart/form-data">
       <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]">
       <button class="drop-zone__submit">Upload</button>
+    </form>
     </div>
-
-  </form>
+  
     
 </main>
 <aside> 
