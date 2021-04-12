@@ -17,8 +17,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage }); // or simply { dest: 'uploads/' }
 app.use(express.static('client'));
 
-app.post('/upload', upload.array('avatar'), (req, res) => {
+app.post('/upload', upload.any('files'), (req, res) => {
   return res.json({ status: 'OK', uploaded: req.files.length });
 });
 
-app.listen(5000);
+app.listen(7000);
