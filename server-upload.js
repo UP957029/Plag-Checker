@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -21,4 +22,4 @@ app.post('/upload', upload.any('files'), (req, res) => {
   return res.json({ status: 'OK', uploaded: req.files.length });
 });
 
-app.listen(7000);
+app.listen(8080);

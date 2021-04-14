@@ -1,50 +1,44 @@
 <!DOCTYPE html>
 <html>
-   <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compitable" content="IE-edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-<title>Plagiarisim Checker</title>
-<style media="screen"></style>
-</head  >
-<body style="background-color: #dfe3ee;"> 
-<header>
-   <h1 class="headerTitle">Plagiarism Checker</h1> 
-</header>
-<main>
-  
-    <div class="drop-zone">
-      <div class="pic"> <i class="fas fa-file-upload"></i> </div>
-      <header id="dropText">Drag and drop file(s) here</header>
-      <span>Or</span>
-      
-      <button class="drop-zone__button">Select file(s)</button>
-      
-        <form action="/upload" method="post" enctype="multipart/form-data">
-      <input class="drop-zone__file" type="file" multiple id="fileDrag" style="display: none;" name="myFiles[]">
-      <button class="drop-zone__submit">Upload</button>
-    </form>
-    </div>
-  
-  
-    
-</main>
-<aside> 
-<h1>Code Similarity Report</h1>
-<table>
-  <h4>File 1 name:</h4>
-  <tr>
-    <td>File:</td>
-    <td>Similarity:</td>
-    <td>Size:</td>
-</tr>
-</table>
-</aside>
-<footer style="height: auto;"  >
- 
-</footer>
-<script src="./app.js"> </script>
+<head>
+	<meta charset="utf-8">
+	<meta content="IE-edge" http-equiv="X-UA-Compitable">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link href="styles.css" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
+	<title>Plagiarisim Checker</title>
+	<style media="screen">
+	</style>
+</head>
+<body style="background-color: #dfe3ee;">
+	<header>
+		<h1 class="headerTitle">Plagiarism Checker</h1>
+	</header>
+	<main>
+		<form action="/upload" enctype="multipart/form-data" method="post">
+			<div class="drop-zone">
+				<div class="pic">
+					<i class="fas fa-file-upload"></i>
+				</div>
+				<header id="dropText">
+					Drag and drop file(s) here
+				</header><span>Or</span> <button class="drop-zone__button" type="button">Select file(s)</button> <input class="drop-zone__file" id="fileDrag" multiple name="myFiles[]" style="display: none;" type="file"> <button class="drop-zone__submit">Upload</button>
+			</div>
+		</form>
+	</main>
+	<aside>
+		<h1>Code Similarity Report</h1>
+		<h4>File 1 name:</h4>
+		<table>
+			<tr>
+				<td>File:</td>
+				<td>Similarity:</td>
+				<td>Size:</td>
+			</tr>
+		</table>
+	</aside>
+	<footer style="height: auto;"></footer>
+	<script src="./app.js">
+	</script>
 </body>
 </html>
