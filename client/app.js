@@ -65,7 +65,7 @@ function showFiles() {
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-   const endpoint = 'upload.js';
+  const endpoint = 'upload.js';
   const formdData = new FormData();
   formdData.append('file', file.files);
   console.log(file)
