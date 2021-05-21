@@ -29,6 +29,8 @@
     "@linthtml/linthtml": "^0.7.0",
     "eslint": "^7.22.0",
     "eslint-config-portsoc": "^0.8.1",
+    "eslint-plugin-html": "^6.1.2",
+    "htmlhint": "^0.14.2",
     "nodemon": "^2.0.7"
   },
   "eslintConfig": {
@@ -36,6 +38,9 @@
     "root": true,
     "env": {
       "browser": true
-    }
+    },
+    "plugins": [
+      "html"
+    ]
   }
 }

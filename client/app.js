@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-sequences */
 const dropZone = document.querySelector('.drop-zone');
 const button = document.querySelector('.drop-zone__button');
@@ -5,6 +6,7 @@ const button = document.querySelector('.drop-zone__button');
 let file;
 const dragText = document.querySelector('#dropText');
 const inputFile = document.querySelector('.drop-zone__file');
+const compare = document.querySelector('#compare');
 
 
 dropZone.addEventListener('dragover', (e) => {
@@ -37,6 +39,10 @@ inputFile.addEventListener('change', function () {
 
 document.querySelector('.drop-zone__submit').addEventListener('click', () => {
   console.log(file);
+});
+
+compare.addEventListener('click', function () {
+  console.log('hello');
 });
 
 
@@ -73,25 +79,41 @@ form.addEventListener('submit', e => {
 */
 
 // Functions for server
-const form = document.getElementById('form');
 
-form.addEventListener('submit', submitForm);
 
-function submitForm(e) {
-  e.preventDefault();
-
-  const files = document.getElementsByClassName('drop-zone__file');
-  const formData = new FormData();
-  for (let i = 0; i < files.length; i++) {
-    formData.append('files', files[i]);
+function getFileArray() {
+  const fileArray = [];
+  for (let i = 0; i < file.length; i++) {
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      const fileURL = fileReader.result;
+    };
+    const fileValue = fileReader.readAsText(file[i]);
+    fileArray[i] = fileValue;
   }
-  fetch('http://localhost:8080/upload_files', {
-    method: 'post',
-    body: formData,
-  })
-    .then((res) => console.log(res))
-    // eslint-disable-next-line no-restricted-syntax
-    // eslint-disable-next-line no-sequences
-    // eslint-disable-next-line no-restricted-syntax
-    .catch((err) => ('Error occured', err));
+  console.log(fileArray);
 }
+
+
+
+
+
+/*
+function showFiles() {
+  for (let i = 0; i < file.length; i++) {
+    const fileType = file[i].type;
+    const validExtensions = ['text/javascript'];
+    if (validExtensions.includes(fileType)) {
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        const fileURL = fileReader.result;
+        console.log(fileURL);
+      };
+      fileReader.readAsDataURL(file[i]);
+    } else {
+      alert('Invalid File');
+      dropZone.classList.remove('drop-zone--over');
+    }
+  }
+}
+*/
