@@ -24,8 +24,8 @@ dropZone.addEventListener('dragleave', (e) => {
 dropZone.addEventListener('drop', (event) => {
   event.preventDefault();
 
-  file = event.dataTransfer.files;
-  showFiles();
+  inputFile.files = event.dataTransfer.files;
+  // showFiles();
 });
 
 button.addEventListener('click', () => {
@@ -34,15 +34,11 @@ button.addEventListener('click', () => {
 
 inputFile.addEventListener('change', function () {
   file = this.files;
-  showFiles();
+  // showFiles();
 });
 
 document.querySelector('.drop-zone__submit').addEventListener('click', () => {
   console.log(file);
-});
-
-compare.addEventListener('click', function () {
-  console.log('hello');
 });
 
 
@@ -93,9 +89,6 @@ function getFileArray() {
   }
   console.log(fileArray);
 }
-
-
-
 
 
 /*

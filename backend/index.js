@@ -5,14 +5,13 @@ const stringSimilarity = require('string-similarity');
 // get a list of path names
 
 const files = fs.readdirSync('Plag-Checker/uploads');
-console.log(files[1]);
+//
 const pathArr = [];
 for (let i = 0; i < files.length; i++) {
   const filePath = path.join(files[i]);
   pathArr[i] = 'Plag-Checker/uploads' + '/' + filePath;
   // console.log(pathArr[i]);
 }
-console.log('The array of paths is: ' + pathArr);
 
 
 // readfile sync in loop using the path array to create a list of files data in string
@@ -32,5 +31,11 @@ for (let i = 0; i < files.length; i++) {
 
 // Compares the first file against all of the files
 
-const similarity = stringSimilarity.findBestMatch(dataArr[0], dataArr);
+
+const original = dataArr.shift();
+dataArr.shift();
+const targetFiles = dataArr;
+
+
+const similarity = stringSimilarity.findBestMatch(original, targetFiles);
 console.log(similarity); // Returns a fraction between 0 and 1
