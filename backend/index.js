@@ -13,23 +13,12 @@ for (let i = 0; i < files.length; i++) {
   // console.log(pathArr[i]);
 }
 
-
-// readfile sync in loop using the path array to create a list of files data in string
-
+// readfile sync in loop using the path array to create a list of files data in strin
 const dataArr = [];
 for (let i = 0; i < files.length; i++) {
   const dataString = fs.readFileSync(pathArr[i], 'utf-8');
   dataArr[i] = dataString;
 }
-// console.log('The array of string data is: ' + dataArr + 'this is the end of the data array');
-
-
-// examples of string-similarity with fs module
-// const exercise = fs.readFileSync(pathArr[0], 'utf-8');
-// const solution = fs.readFileSync(pathArr[1], 'utf-8');
-// const third = fs.readFileSync(pathArr[2], 'utf-8');
-
-// Compares the first file against all of the files
 
 
 const original = dataArr.shift();
@@ -39,3 +28,18 @@ const targetFiles = dataArr;
 
 const similarity = stringSimilarity.findBestMatch(original, targetFiles);
 console.log(similarity); // Returns a fraction between 0 and 1
+
+
+// used to delete all files after
+function deleteFiles() {
+  for (let i = 0; i < pathArr.length; i++) {
+    fs.unlink(pathArr[i], (err) => {
+      if (err) {
+        console.error(err);
+      }
+
+      // file removed
+    });
+  }
+}
+deleteFiles();
