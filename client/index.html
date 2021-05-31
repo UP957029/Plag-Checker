@@ -15,16 +15,17 @@
 		<h1 class="headerTitle">Plagiarism Checker</h1>
 	</header>
 	<main>
-		<form action="/upload" enctype="multipart/form-data" method="post">
+		
 			<div class="drop-zone">
 				<div class="pic">
 					<i class="fas fa-file-upload"></i>
 				</div>
 				<header id="dropText">
 					Drag and drop file(s) here
-				</header><span>Or</span> <button class="drop-zone__button" type="button">Select file(s)</button> <input class="drop-zone__file" id="fileDrag" multiple name="myFiles[]" style="display: none;" type="file"> <button class="drop-zone__submit">Upload</button>
+				</header><span>Or</span> <button class="drop-zone__button" type="button">Select file(s)</button> <input class="drop-zone__file" id="fileDrag" multiple name="myFiles[]" style="display: none;" type="file">
+				 <button class="drop-zone__submit">Upload</button>
 			</div>
-		</form>
+		
 		<button class="compare">Check</button>
 	</main>
 	<aside>
@@ -39,6 +40,7 @@
 		</table>
 	</aside>
 	<footer style="height: auto;"></footer>
-	<script src="./app.js"></script>	
+		
 </body>
+<script src="./app.js"></script>
 </html>
