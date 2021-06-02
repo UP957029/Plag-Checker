@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-sequences */
 const dropZone = document.querySelector('.drop-zone');
@@ -7,6 +8,47 @@ let file;
 const dragText = document.querySelector('#dropText');
 const inputFile = document.querySelector('.drop-zone__file');
 const compare = document.querySelector('#compare');
+const submit = document.querySelector('.drop-zone__submit');
+
+
+// async function managing uploads
+async function uploadFile() {
+  let return_data = { error: 0, message: '' };
+  for (let i = 0; i < inputFile.files.length; i++) {
+    try {
+    // no file selected
+      if (inputFile.files.length === 0) {
+        throw new Error('No file selected');
+      } else {
+      // formdata
+
+        const data = new FormData();
+        data.append('title', 'Sample Title');
+        data.append('file', inputFile.files[i]);
+
+        // send fetch along with cookies
+        const response = fetch('/upload', {
+          method: 'POST',
+          body: data,
+        });
+
+
+        // server responded with http response != 200
+        if (response.status !== 200) { throw new Error(''); }
+
+        // read json response from server
+        // success response example : {"error":0,"message":""}
+        // error response example : {"error":1,"message":"File type not allowed"}
+        const json_response = await response.json();
+        if (json_response.error === 1) { throw new Error(); }
+      }
+    } catch (e) {
+    // catch rejected Promises and Error objects
+      return_data = { error: 1, message: e.message };
+    }
+  }
+  return return_data;
+}
 
 
 dropZone.addEventListener('dragover', (e) => {
@@ -37,8 +79,11 @@ inputFile.addEventListener('change', function () {
   // showFiles();
 });
 
-document.querySelector('.drop-zone__submit').addEventListener('click', () => {
-  console.log(file);
+
+submit.addEventListener('click', async function () {
+  const upload = await uploadFile();
+
+  if (upload.error === 0) { alert('Please select a file'); } else if (upload.error === 1) { alert('Files uploaded sucessfuly ' + upload.message); }
 });
 
 
@@ -60,53 +105,3 @@ function showFiles() {
     }
   }
 }
-
-// submits the uplaoded files to the server "server.js"
-/* const form = document.querySelector('.submitForm');
-
-form.addEventListener('submit', e => {
-  e.preventDefault();
-
-  const endpoint = 'upload.js';
-  const formdData = new FormData();
-  formdData.append('file', file.files);
-  console.log(file)
-});
-*/
-
-// Functions for server
-
-
-function getFileArray() {
-  const fileArray = [];
-  for (let i = 0; i < file.length; i++) {
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      const fileURL = fileReader.result;
-    };
-    const fileValue = fileReader.readAsText(file[i]);
-    fileArray[i] = fileValue;
-  }
-  console.log(fileArray);
-}
-
-
-/*
-function showFiles() {
-  for (let i = 0; i < file.length; i++) {
-    const fileType = file[i].type;
-    const validExtensions = ['text/javascript'];
-    if (validExtensions.includes(fileType)) {
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        const fileURL = fileReader.result;
-        console.log(fileURL);
-      };
-      fileReader.readAsDataURL(file[i]);
-    } else {
-      alert('Invalid File');
-      dropZone.classList.remove('drop-zone--over');
-    }
-  }
-}
-*/
