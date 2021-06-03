@@ -22,4 +22,6 @@ app.post('/upload', upload.any('files'), (req, res) => {
   return res.json({ status: 'OK', uploaded: req.files.length });
 });
 
+// compareFiles();
+
 app.listen(8080);

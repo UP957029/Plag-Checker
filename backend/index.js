@@ -2,15 +2,14 @@ const path = require('path');
 const fs = require('fs');
 const stringSimilarity = require('string-similarity');
 
-
 function compareFiles() {
 // get a list of path names
-  const files = fs.readdirSync('Plag-Checker/uploads');
+  const files = fs.readdirSync('uploads');
   //
   const pathArr = [];
   for (let i = 0; i < files.length; i++) {
     const filePath = path.join(files[i]);
-    pathArr[i] = 'Plag-Checker/uploads' + '/' + filePath;
+    pathArr[i] = 'uploads' + '/' + filePath;
   // console.log(pathArr[i]);
   }
 
