@@ -7,7 +7,7 @@ const button = document.querySelector('.drop-zone__button');
 let file;
 const dragText = document.querySelector('#dropText');
 const inputFile = document.querySelector('.drop-zone__file');
-const compare = document.querySelector('.compare');
+const compare = document.querySelector('.compare-button');
 const submit = document.querySelector('.drop-zone__submit');
 const text = document.querySelector('.textContent');
 const table = document.querySelector('.table');
@@ -107,6 +107,7 @@ async function compareFiles() {
       target.appendChild(target_text);
       row.appendChild(target);
       const rating = document.createElement('td');
+
       const rating_text = document.createTextNode(ratings[i].rating);
       rating.appendChild(rating_text);
       row.appendChild(rating);
@@ -116,6 +117,7 @@ async function compareFiles() {
     console.log(e);
   }
 }
+
 
 compare.addEventListener('click', async function () {
   await compareFiles();

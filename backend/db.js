@@ -3,14 +3,14 @@ const sqlite3 = require('sqlite3').verbose();
 const today = new Date();
 // Creates the database
 
-async function init() {
+function create() {
   const db = new sqlite3.Database('database.db');
   db.run('CREATE TABLE IF NOT EXISTS BestMatches (id CHAR(36) PRIMARY KEY, best TEXT NOT NULL, time DATETIME);');
   return db;
 }
 
 // declares a variable to create the database.
-const dbConn = init();
+const dbConn = create();
 
 // Returns the best matches in order by time
 async function getMatches() {
