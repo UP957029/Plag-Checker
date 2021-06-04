@@ -2,9 +2,10 @@ const uuid = require('uuid-random');
 const sqlite3 = require('sqlite3').verbose();
 const today = new Date();
 // Creates the database
+
 async function init() {
-  const db = await sqlite3.OPEN_CREATE('./database.sql', { verbose: true });
-  await db.migrate({ migrationPath: './migrations-sql' });
+  const db = new sqlite3.Database('database.db');
+  db.run('CREATE TABLE IF NOT EXISTS BestMatches (id CHAR(36) PRIMARY KEY, best TEXT NOT NULL, time DATETIME);');
   return db;
 }
 
@@ -23,7 +24,7 @@ async function findMatch(id) {
   return db.all('SELECT * FROM BestMatch WHERE if = ?', id);
 }
 
-async function addMatch(url) {
+async function addMatch(text) {
   const db = await dbConn;
 
   const id = uuid();
@@ -31,3 +32,9 @@ async function addMatch(url) {
   const match = addMatch;
   await db.run('INSERT INTO BestMatches VALUES (?, ?, ?)', [id, match, time]);
 }
+
+module.exports = {
+
+  getMatches, findMatch, addMatch,
+
+};

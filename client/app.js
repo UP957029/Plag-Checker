@@ -7,9 +7,10 @@ const button = document.querySelector('.drop-zone__button');
 let file;
 const dragText = document.querySelector('#dropText');
 const inputFile = document.querySelector('.drop-zone__file');
-const compare = document.querySelector('#compare');
+const compare = document.querySelector('.compare');
 const submit = document.querySelector('.drop-zone__submit');
-
+const text = document.querySelector('.textContent');
+const table = document.querySelector('.table');
 
 // async function managing uploads
 async function uploadFile() {
@@ -86,6 +87,39 @@ submit.addEventListener('click', async function () {
   if (upload.error === 0) { alert('Please select a file'); } else if (upload.error === 1) { alert('Files uploaded sucessfuly ' + upload.message); }
 });
 
+
+async function compareFiles() {
+  try {
+    const response = await fetch('/compare');
+
+    if (!response.ok) { throw new Error('Status code was: ' + response.status); }
+
+    for (let i = 1; i < table.childNodes.length; i++) {
+      table.removeChild(table.childNodes[i]);
+    }
+
+    const json_response = await response.json();
+    const ratings = json_response.ratings;
+    for (let i = 0; i < ratings.length; i++) {
+      const row = document.createElement('tr');
+      const target = document.createElement('td');
+      const target_text = document.createTextNode(ratings[i].target);
+      target.appendChild(target_text);
+      row.appendChild(target);
+      const rating = document.createElement('td');
+      const rating_text = document.createTextNode(ratings[i].rating);
+      rating.appendChild(rating_text);
+      row.appendChild(rating);
+      table.appendChild(row);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+compare.addEventListener('click', async function () {
+  await compareFiles();
+});
 
 // This function will display the files text content
 function showFiles() {

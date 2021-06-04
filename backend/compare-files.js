@@ -22,12 +22,14 @@ function compareFiles() {
 
 
   const original = dataArr.shift();
-  dataArr.shift();
+  // dataArr.shift();
   const targetFiles = dataArr;
 
-
+  // console.log('this is the original file: ' + original);
+  // console.log('this is the target array: ' + targetFiles);
+  console.log('The original file: ' + '\n' + original);
   const similarity = stringSimilarity.findBestMatch(original, targetFiles);
-  console.log(similarity); // Returns a fraction between 0 and 1
+  // console.log(similarity); // Returns a fraction between 0 and 1
 
 
   // used to delete all files after
@@ -41,6 +43,7 @@ function compareFiles() {
       // file removed
     });
   }
+  return similarity;
 }
 
-compareFiles();
+module.exports = compareFiles;
