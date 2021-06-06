@@ -7,15 +7,15 @@ function compareFiles() {
   const files = fs.readdirSync('uploads/');
   // sorts files in order of most recent.
   files.sort(function (x, y) {
-    return fs.statSync('uploads/' + x).mtime.getTime() -
-    fs.statSync('uploads/' + y).mtime.getTime();
+    return fs.statSync('uploads/' + y).mtime.getTime() -
+    fs.statSync('uploads/' + x).mtime.getTime();
   });
   console.log(files);
 
   // sorting files into most recent
 
 
-  console.log(files);
+  // console.log(files);
 
   const pathArr = [];
   for (let i = 0; i < files.length; i++) {
@@ -39,11 +39,16 @@ function compareFiles() {
   // the most recent file is compared against the remaining files
   console.log('The original file: ' + '\n' + original);
   const similarity = stringSimilarity.findBestMatch(original, targetFiles);
-
+  console.log(similarity);
   // used to delete all files after
 
-  for (let i = 0; i < pathArr.length; i++) {
-    fs.unlink(pathArr[i], (err) => {
+  // deleteFiles(pathArr);
+  return similarity;
+}
+
+function deleteFiles(path) {
+  for (let i = 0; i < path.length; i++) {
+    fs.unlink(path[i], (err) => {
       if (err) {
         console.error(err);
       }
@@ -51,8 +56,7 @@ function compareFiles() {
       // file removed
     });
   }
-  return similarity;
 }
-
+compareFiles();
 
 module.exports = compareFiles;
