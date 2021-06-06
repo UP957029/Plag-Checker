@@ -32,6 +32,7 @@ app.get('/compare', function (req, res) {
   res.send(similarity);
 });
 
+
 /*
 app.get('/matches', function (req, res) {
   let matches = db.getMatches();
@@ -39,4 +40,4 @@ app.get('/matches', function (req, res) {
 });
 // compareFiles();
 */
-app.listen(http://up957029.myvm.port.ac.uk./);
+app.listen(8080);
