@@ -57,6 +57,6 @@ function deleteFiles(path) {
     });
   }
 }
-compareFiles();
+// compareFiles();
 
 module.exports = compareFiles;
