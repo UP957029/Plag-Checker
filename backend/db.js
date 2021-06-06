@@ -29,7 +29,7 @@ async function addMatch(text) {
 
   const id = uuid();
   const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-  const match = addMatch;
+  const match = text;
   await db.run('INSERT INTO BestMatches VALUES (?, ?, ?)', [id, match, time]);
 }
 

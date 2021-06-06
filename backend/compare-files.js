@@ -4,8 +4,19 @@ const stringSimilarity = require('string-similarity');
 
 function compareFiles() {
 // get a list of path names
-  const files = fs.readdirSync('uploads');
-  //
+  const files = fs.readdirSync('uploads/');
+  // sorts files in order of most recent.
+  files.sort(function (x, y) {
+    return fs.statSync('uploads/' + x).mtime.getTime() -
+    fs.statSync('uploads/' + y).mtime.getTime();
+  });
+  console.log(files);
+
+  // sorting files into most recent
+
+
+  console.log(files);
+
   const pathArr = [];
   for (let i = 0; i < files.length; i++) {
     const filePath = path.join(files[i]);
@@ -25,12 +36,9 @@ function compareFiles() {
   // dataArr.shift();
   const targetFiles = dataArr;
 
-  // console.log('this is the original file: ' + original);
-  // console.log('this is the target array: ' + targetFiles);
+  // the most recent file is compared against the remaining files
   console.log('The original file: ' + '\n' + original);
   const similarity = stringSimilarity.findBestMatch(original, targetFiles);
-  // console.log(similarity); // Returns a fraction between 0 and 1
-
 
   // used to delete all files after
 
@@ -45,5 +53,6 @@ function compareFiles() {
   }
   return similarity;
 }
+
 
 module.exports = compareFiles;

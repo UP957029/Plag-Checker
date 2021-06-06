@@ -206,12 +206,21 @@ header {
     justify-content: center;
     flex-direction: column;
     margin: 0 auto;
+    max-width: 100px;
 }
 
 td {
-    padding: 20px;
+    padding: 40px;
     max-width: 100%;
     font-size: 20px;
     white-space: pre-wrap;
+}
+
+.best-table{
+    max-width: 100px;
+}
+
+h2{
+    left: 50%;
 }
 
