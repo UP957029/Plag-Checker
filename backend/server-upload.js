@@ -32,7 +32,6 @@ app.get('/compare', function (req, res) {
   res.send(similarity);
 });
 
-
 /*
 app.get('/matches', function (req, res) {
   let matches = db.getMatches();

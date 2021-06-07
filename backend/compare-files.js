@@ -42,7 +42,6 @@ function compareFiles() {
   console.log(similarity);
   // used to delete all files after
   // deleteFiles(pathArr);
-  // deleteFiles(pathArr);
   return similarity;
 }
 
